@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bar Prices</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+  <div>
+    <h3 style="display: inline;">Changement dans</h3>
+    <div id="timer" style="display: inline;"></div>
+  </div>
+  <div id="prices">
+      <!-- Les prix seront insérés ici -->
+  </div>
+  <div>
+      <p>
+          Shot - <span id="priceShot"></span> €
+          <button id="minusShot" class="minus-button">-</button>
+          <span id="quantityShot" class="quantity"></span>
+          <button id="plusShot" class="plus-button">+</button>
+      </p>
+      <p>
+          Mètre de shot - <span id="priceMeter"></span> €
+          <button id="minusMeter" class="minus-button">-</button>
+          <span id="quantityMeter" class="quantity"></span>
+          <button id="plusMeter" class="plus-button">+</button>
+      </p>
+      <p>
+          Hard Energy - <span id="priceHardEnergy"></span> €
+          <button id="minusHardEnergy" class="minus-button">-</button>
+          <span id="quantityHardEnergy" class="quantity"></span>
+          <button id="plusHardEnergy" class="plus-button">+</button>
+      </p>
+      <p>
+          Hard Soft - <span id="priceHardSoft"></span> €
+          <button id="minusHardSoft" class="minus-button">-</button>
+          <span id="quantityHardSoft" class="quantity"></span>
+          <button id="plusHardSoft" class="plus-button">+</button>
+      </p>
+      <p>
+          Bière - <span id="priceBeer"></span> €
+          <button id="minusBeer" class="minus-button">-</button>
+          <span id="quantityBeer" class="quantity"></span>
+          <button id="plusBeer" class="plus-button">+</button>
+      </p>
+  </div>
+  <p>Total : <span id="totalPrice" class="total"></span> €</p>
+</body>
+</html>

@@ -1,0 +1,48 @@
+body {
+    background-color: white;
+    font-size: 200%;
+  }
+
+#timer {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.2em;
+
+}
+  
+.minus-button, .plus-button {
+  color: white;
+  font-size: 1.3em;
+  width: 35px;
+  height: 35px;
+  margin-bottom: 10px;
+  vertical-align: middle;
+  display: inline-flex; /* Modifié pour garder les éléments sur la même ligne */
+  align-items: center; /* Centrer verticalement */
+  justify-content: center; /* Centrer horizontalement */
+}
+
+.minus-button {
+  position: absolute;
+  right: 85px;
+  background-color: red;
+}
+
+.plus-button {
+  position: absolute;
+  right: 10px;
+  background-color: green;
+}
+
+.quantity { 
+  position: absolute;
+  right: 55px;
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+.total { 
+  font-size: 1.2em;
+  font-weight: bold;
+}
