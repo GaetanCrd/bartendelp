@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bar Prices</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+   
+            const quantities = {
+                shot: 0,
+                meter: 0,
+                hardEnergy: 0,
+                hardSoft: 0,
+                beer: 0,
+              };
+              
+              function updateTotal() {
+                const total =
+                  parseFloat(document.getElementById("priceShot").innerText) * quantities.shot +
+                  parseFloat(document.getElementById("priceMeter").innerText) * quantities.meter +
+                  parseFloat(document.getElementById("priceHardEnergy").innerText) * quantities.hardEnergy +
+                  parseFloat(document.getElementById("priceHardSoft").innerText) * quantities.hardSoft +
+                  parseFloat(document.getElementById("priceBeer").innerText) * quantities.beer;
+                document.getElementById("totalPrice").innerText = total.toFixed(1);
+              }
+              
+              function increment(id) {
+                quantities[id]++;
+                document.getElementById("quantity" + id.charAt(0).toUpperCase() + id.slice(1)).innerText = quantities[id];
+                updateTotal();
+              }
+              
+              function decrement(id) {
+                if (quantities[id] > 0) {
+                  quantities[id]--;
+                  document.getElementById("quantity" + id.charAt(0).toUpperCase() + id.slice(1)).innerText = quantities[id];
+                  updateTotal();
+                }
+              }
+              
+              function updatePrices() {
+                const now = new Date();
+                const hours = now.getHours();
+                const minutes = now.getMinutes();
+            
+                let priceShot, priceMeter, priceBeer, priceHardSoft, priceHardEnergy;
+            
+                if (hours === 23 && minutes >= 30) {
+                    priceShot = 3.20;
+                    priceMeter = 25.00;
+                    priceHardEnergy = 6.00;
+                    priceHardSoft = 5.20;
+                    priceBeer = 2.80;
+                } else if (hours === 0 && minutes < 30) {
+                    priceShot = 3.00;
+                    priceMeter = 23.00;
+                    priceHardEnergy = 6.80;
+                    priceHardSoft = 5.60;
+                    priceBeer = 3.40;
+                } else if (hours === 0 && minutes >= 30) {
+                    priceShot = 2.40;
+                    priceMeter = 21.00;
+                    priceHardEnergy = 5.60;
+                    priceHardSoft = 4.60;
+                    priceBeer = 2.60;
+                } else if (hours === 1 && minutes < 30) {
+                    priceShot = 3.40;
+                    priceMeter = 28.00;
+                    priceHardEnergy = 7.00;
+                    priceHardSoft = 6.00;
+                    priceBeer = 3.60;
+                } else if (hours === 1 && minutes >= 30 && minutes < 45) {
+                    priceShot = 3.00;
+                    priceMeter = 25.00;
+                    priceHardEnergy = 6.00;
+                    priceHardSoft = 2.50;
+                    priceBeer = 3.00;
+                } else if (hours === 1 && minutes >= 45) {
+                    priceShot = 2.80;
+                    priceMeter = 23.00;
+                    priceHardEnergy = 5.40;
+                    priceHardSoft = 4.20;
+                    priceBeer = 2.60;
+                } else if (hours === 2 && minutes < 30) {
+                    priceShot = 3.40;
+                    priceMeter = 27.00;
+                    priceHardEnergy = 6.20;
+                    priceHardSoft = 5.00;
+                    priceBeer = 3.20;
+                } else if (hours === 2 && minutes >= 30 && minutes < 50) {
+                    priceShot = 2.60;
+                    priceMeter = 25.00;
+                    priceHardEnergy = 3.00;
+                    priceHardSoft = 4.60;
+                    priceBeer = 3.00;
+                } else if (hours === 2 && minutes >= 50 || hours === 3 && minutes < 30) {
+                    priceShot = 3.60;
+                    priceMeter = 30.00;
+                    priceHardEnergy = 5.60;
+                    priceHardSoft = 4.20;
+                    priceBeer = 2.40;
+                } else if (hours === 3 && minutes >= 30 && minutes < 45) {
+                    priceShot = 3.00;
+                    priceMeter = 15.00;
+                    priceHardEnergy = 5.80;
+                    priceHardSoft = 6.20;
+                    priceBeer = 2.80;
+                } else if (hours === 3 && minutes >= 45 || hours === 4 && minutes < 30) {
+                    priceShot = 2.60;
+                    priceMeter = 23.00;
+                    priceHardEnergy = 5.60;
+                    priceHardSoft = 4.40;
+                    priceBeer = 3.60;
+                } else if (hours === 4 && minutes >= 30 || hours === 5 && minutes < 30) {
+                    priceShot = 3.00;
+                    priceMeter = 25.00;
+                    priceHardEnergy = 6.00;
+                    priceHardSoft = 5.00;
+                    priceBeer = 3.00;
+                } else {
+                    // Définir les prix par défaut
+                    priceShot = 0;
+                    priceMeter = 0;
+                    priceBeer = 0;
+                    priceHardSoft = 0;
+                    priceHardEnergy = 0;
+                }
+              
+                document.getElementById("priceShot").innerText = priceShot.toFixed(1);
+                document.getElementById("priceMeter").innerText = priceMeter.toFixed(1);
+                document.getElementById("priceHardEnergy").innerText = priceHardEnergy.toFixed(1);
+                document.getElementById("priceHardSoft").innerText = priceHardSoft.toFixed(1);
+                document.getElementById("priceBeer").innerText = priceBeer.toFixed(1);
+              }
+              
+              document.getElementById("plusShot").addEventListener("click", () => increment("shot"));
+              document.getElementById("minusShot").addEventListener("click", () => decrement("shot"));
+              document.getElementById("plusMeter").addEventListener("click", () => increment("meter"));
+              document.getElementById("minusMeter").addEventListener("click", () => decrement("meter"));
+              document.getElementById("plusHardEnergy").addEventListener("click", () => increment("hardEnergy"));
+              document.getElementById("minusHardEnergy").addEventListener("click", () => decrement("hardEnergy"));
+              document.getElementById("plusHardSoft").addEventListener("click", () => increment("hardSoft"));
+              document.getElementById("minusHardSoft").addEventListener("click", () => decrement("hardSoft"));
+              document.getElementById("plusBeer").addEventListener("click", () => increment("beer"));
+              document.getElementById("minusBeer").addEventListener("click", () => decrement("beer"));
+        
+            function initializeQuantities() {
+                for (const id in quantities) {
+                    document.getElementById("quantity" + id.charAt(0).toUpperCase() + id.slice(1)).innerText = quantities[id];
+                }
+            }
+        
+        
+        
+            function getTimeRemaining() {
+                const now = new Date();
+                const hours = now.getHours();
+                const minutes = now.getMinutes();
+                const seconds = now.getSeconds();
+              
+                let remainingTimeInSeconds;
+              
+                if (hours === 23 && minutes >= 30) {
+                  remainingTimeInSeconds = (59 - minutes) * 60 + 60 - seconds;
+        
+                } else if (hours === 0 && minutes < 30) {
+                  remainingTimeInSeconds = (29 - minutes) * 60 + 60 - seconds;
+        
+                } else if (hours === 0 && minutes >= 30) {
+                  remainingTimeInSeconds = (59 - minutes) * 60 + 60 - seconds;
+        
+                } else if (hours === 1 && minutes < 30) {
+                  remainingTimeInSeconds = (29 - minutes) * 60 + 60 - seconds;
+        
+                } else if (hours === 1 && minutes >= 30 && minutes < 45) {
+                  remainingTimeInSeconds = (44 - minutes) * 60 + 60 - seconds;
+                  
+                } else if (hours === 1 && minutes >= 45) {
+                  remainingTimeInSeconds = (59 - minutes) * 60 + 60 - seconds;
+        
+                } else if (hours === 2 && minutes < 30) {
+                  remainingTimeInSeconds = (29 - minutes) * 60 + 60 - seconds;
+        
+                } else if (hours === 2 && minutes >= 30 && minutes < 50) {
+                  remainingTimeInSeconds = (49 - minutes) * 60 + 60 - seconds;
+                  
+                } else if (hours === 2 && minutes >= 50) {
+                    remainingTimeInSeconds = (89 - minutes) * 60 + 60 - seconds;        
+                } else if (hours === 3 && minutes < 30) {
+                  remainingTimeInSeconds = (29 - minutes) * 60 + 60 - seconds;
+        
+                } else if (hours === 3 && minutes >= 30 && minutes < 45) {
+                  remainingTimeInSeconds = (44 - minutes) * 60 + 60 - seconds;
+        
+                } else if (hours === 3 && minutes >= 45) {
+                  remainingTimeInSeconds = (89 - minutes) * 60 + 60 - seconds;        
+                } else if (hours === 4 && minutes < 30) {
+                  remainingTimeInSeconds = (29 - minutes) * 60 + 60 - seconds;
+                  
+                } else {
+                  remainingTimeInSeconds = 0;
+                }
+              
+                const remainingMinutes = Math.floor(remainingTimeInSeconds / 60);
+                const remainingSeconds = remainingTimeInSeconds % 60;
+              
+                document.getElementById("timer").innerText = remainingMinutes.toString().padStart(2, '0') + ":" + remainingSeconds.toString().padStart(2, '0');
+              }
+        
+            
+        
+            updatePrices();
+            initializeQuantities();
+            updateTotal();
+        
+            setInterval(getTimeRemaining, 1000);
+        
+            setInterval(updatePrices, 1000);
+            setInterval(updateTotal, 1000);
+        
+        
+              
+        
+        
+        });
+                
+        
+    </script>
+    <style>
+        body {
+            background-color: white;
+            font-size: 200%;
+            zoom: 75%; 
+
+          }
+        
+        #timer {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          font-size: 1.2em;
+        
+        }
+          
+        .minus-button, .plus-button {
+          color: white;
+          font-size: 1.3em;
+          width: 35px;
+          height: 35px;
+          margin-bottom: 10px;
+          vertical-align: middle;
+          display: inline-flex; /* Modifié pour garder les éléments sur la même ligne */
+          align-items: center; /* Centrer verticalement */
+          justify-content: center; /* Centrer horizontalement */
+        }
+        
+        .minus-button {
+          position: absolute;
+          right: 135px;
+          background-color: red;
+        }
+        
+        .plus-button {
+          position: absolute;
+          right: 10px;
+          background-color: green;
+        }
+        
+        .quantity { 
+          position: absolute;
+          right: 105px;
+          font-size: 1.3em;
+          font-weight: bold;
+          margin-bottom: 10px;
+          vertical-align: middle;
+          display: inline-flex; /* Modifié pour garder les éléments sur la même ligne */
+          align-items: center; /* Centrer verticalement */
+          justify-content: center; /* Centrer horizontalement */
+        }
+        
+        .total { 
+          font-size: 1.2em;
+          font-weight: bold;
+        }        
+    </style>
+</head>
+<body>
+  <div>
+    <h2 style="display: inline;">Changement dans</h2>
+    <div id="timer" style="display: inline;"></div>
+  </div>
+  <div id="prices">
+      <!-- Les prix seront insérés ici -->
+  </div>
+  <div>
+      <p>
+          Shot - <span id="priceShot"></span> €
+          <button id="minusShot" class="minus-button">-</button>
+          <span id="quantityShot" class="quantity"></span>
+          <button id="plusShot" class="plus-button">+</button>
+      </p>
+      <p>
+          Mètre de shot - <span id="priceMeter"></span> €
+          <button id="minusMeter" class="minus-button">-</button>
+          <span id="quantityMeter" class="quantity"></span>
+          <button id="plusMeter" class="plus-button">+</button>
+      </p>
+      <p>
+          Hard Energy - <span id="priceHardEnergy"></span> €
+          <button id="minusHardEnergy" class="minus-button">-</button>
+          <span id="quantityHardEnergy" class="quantity"></span>
+          <button id="plusHardEnergy" class="plus-button">+</button>
+      </p>
+      <p>
+          Hard Soft - <span id="priceHardSoft"></span> €
+          <button id="minusHardSoft" class="minus-button">-</button>
+          <span id="quantityHardSoft" class="quantity"></span>
+          <button id="plusHardSoft" class="plus-button">+</button>
+      </p>
+      <p>
+          Bière - <span id="priceBeer"></span> €
+          <button id="minusBeer" class="minus-button">-</button>
+          <span id="quantityBeer" class="quantity"></span>
+          <button id="plusBeer" class="plus-button">+</button>
+      </p>
+  </div>
+  <p>Total : <span id="totalPrice" class="total"></span> €</p>
+</body>
+</html>
